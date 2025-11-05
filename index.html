@@ -54,7 +54,7 @@
   <!-- Buttons -->
   <button id="themeBtn">🌗 Toggle Dark Mode</button>
   <button id="quoteBtn">💬 Show Quote of the Day</button>
-  <button id="clickBtn">👆 Click Me></button>
+  <button id="clickBtn">👆 Click Me</button>
 
   <!-- Display Area -->
   <p id="quote"></p>
@@ -90,7 +90,7 @@
     document.getElementById('greeting').textContent = message;
 
     // Quote of the Day (random from list)
-    const quote = [
+    const quotes = [
       '"Do or do not. There is no try." - Yoda'
           ];
     //"“The best way to predict the future is to invent it.” – Alan Kay",
@@ -101,9 +101,8 @@
     //"“In the middle of difficulty lies opportunity.” – Albert Einstein"
 
     //Show Quote of the Day on Button Click
-    quoteBtn.addEventListner('click', () => {
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    quoteDisplay.textContent = quote;
+    quoteBtn.addEventListener('click', () => {
+    const quoteDisplay = document.getElementById('quote');
     //document.getElementById('quote').textContent = randomQuote;
 
     //Click Button for random backgroud click + counter
