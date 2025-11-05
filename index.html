@@ -28,6 +28,16 @@
       background-color: #222;
       color: white;
     }
+    #quote {
+      margin-top: 2rem;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: #fff;
+    }
+    #counter {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -35,11 +45,18 @@
   <p id="greeting">Let's make your page come alive ✨</p>
   <button id="themeBtn">🌗 Toggle Dark Mode</button>
 
+  <p id="quote"></p>
+  <p id="counter">Clicks: 0</p>
+
   <script>
     const btn = document.getElementById('themeBtn');
     const body = document.body;
+    const counterDisplay = document.getElementById('counter');
+    let clickCount = 0;
 
-    btn.addEventListener('click', () => {
+    // Toggle dark mode
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation(); // prevent this click from counting toward color change
       body.classList.toggle('dark');
     });
 
@@ -57,19 +74,26 @@
     else message = "🌙 Good evening!";
     document.getElementById('greeting').textContent = message;
 
-    //Quote of the day
-    const quote = [
-      "'Do or do not. There is no try.' - Yoda"
+    // Quote of the Day (random from list)
+    const quotes = [
+      "“The best way to predict the future is to invent it.” – Alan Kay",
+      "“Do or do not. There is no try.” – Yoda",
+      "“Stay hungry, stay foolish.” – Steve Jobs",
+      "“Simplicity is the ultimate sophistication.” – Leonardo da Vinci",
+      "“Your time is limited, so don’t waste it living someone else’s life.” – Steve Jobs",
+      "“In the middle of difficulty lies opportunity.” – Albert Einstein"
     ];
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    document.getElementById('quote').textContent = randomQuote;
 
-    //Random background colour on click + counter
-    document.addEventListner('click', () => {
+    // Random background color on click + counter
+    document.addEventListener('click', () => {
       clickCount++;
-      counterDisplay.textCounter = 'clicks: ${clickCount}';
+      counterDisplay.textContent = `Clicks: ${clickCount}`;
 
       const randomColor = `hsl(${Math.floor(Math.random() * 360)}, 70%, 60%)`;
       body.style.backgroundColor = randomColor;
-    };    
+    });
   </script>
 </body>
 </html>
