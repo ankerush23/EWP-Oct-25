@@ -13,9 +13,9 @@
       background-color: #42f58a;
       color: #fff;
     }
-    
+
     h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-    
+
     button {
       padding: 1rem 2rem;
       font-size: 1.2rem;
@@ -24,22 +24,23 @@
       background-color: red;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      margin: 0.5rem;
     }
-    
+
     button:hover { background-color: orange; }
-    
+
     .dark {
       background-color: #222;
       color: white;
     }
-    
-   #quote {
+
+    #quote {
       margin-top: 2rem;
       font-style: italic;
       font-size: 1.2rem;
       color: #111212;
     }
-    
+
     #counter {
       margin-top: 1rem;
       font-weight: bold;
@@ -66,12 +67,13 @@
     const quoteBtn = document.getElementById('quoteBtn');
     const clickBtn = document.getElementById('clickBtn');
     const counterDisplay = document.getElementById('counter');
-    
+    const quoteDisplay = document.getElementById('quote');
+
     let clickCount = 0;
 
     // Toggle dark mode
     themeBtn.addEventListener('click', (e) => {
-      e.stopPropagation(); // prevent this click from counting toward color change
+      e.stopPropagation();
       body.classList.toggle('dark');
     });
 
@@ -89,33 +91,24 @@
     else message = "🌙 Good evening!";
     document.getElementById('greeting').textContent = message;
 
-    // Quote of the Day (random from list)
+    // Quotes array
     const quotes = [
-      '"Do or do not. There is no try." - Yoda'
-          ];
-    //"“The best way to predict the future is to invent it.” – Alan Kay",
-    //"“Do or do not. There is no try.” – Yoda",
-    //"“Stay hungry, stay foolish.” – Steve Jobs",
-    //"“Simplicity is the ultimate sophistication.” – Leonardo da Vinci",
-    //"“Your time is limited, so don’t waste it living someone else’s life.” – Steve Jobs",
-    //"“In the middle of difficulty lies opportunity.” – Albert Einstein"
+      "“The best way to predict the future is to invent it.” – Alan Kay",
+      "“Do or do not. There is no try.” – Yoda",
+      "“Stay hungry, stay foolish.” – Steve Jobs",
+      "“Simplicity is the ultimate sophistication.” – Leonardo da Vinci",
+      "“Your time is limited, so don’t waste it living someone else’s life.” – Steve Jobs",
+      "“In the middle of difficulty lies opportunity.” – Albert Einstein"
+    ];
 
-    //Show Quote of the Day on Button Click
+    // Show Quote of the Day on button click
     quoteBtn.addEventListener('click', () => {
-    const quoteDisplay = document.getElementById('quote');
-    //document.getElementById('quote').textContent = randomQuote;
-
-    //Click Button for random backgroud click + counter
-    clickBtn.addEventListener('click', () => {
-      clickCount++;
-      counterDisplay.textContent = `Clicks: ${clickCount}`;
-
-      const randomColor = `hsl(${Math.floor(Math.random() * 360)}, 70%, 60%)`;
-      body.style.backgroundColor = randomColor;
+      const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+      quoteDisplay.textContent = randomQuote;
     });
 
-    // Random background color on click + counter
-    document.addEventListener('click', () => {
+    // Click Button → adds +1 and changes color
+    clickBtn.addEventListener('click', () => {
       clickCount++;
       counterDisplay.textContent = `Clicks: ${clickCount}`;
 
