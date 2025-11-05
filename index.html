@@ -56,6 +56,20 @@
     else if (hour < 18) message = "🌤️ Good afternoon!";
     else message = "🌙 Good evening!";
     document.getElementById('greeting').textContent = message;
+
+    //Quote of the day
+    const quote = [
+      "'Do or do not. There is no try.' - Yoda"
+    ];
+
+    //Random background colour on click + counter
+    document.addEventListner('click', () => {
+      clickCount++;
+      counterDisplay.textCounter = 'clicks: ${clickCount}';
+
+      const randomColor = `hsl(${Math.floor(Math.random() * 360)}, 70%, 60%)`;
+      body.style.backgroundColor = randomColor;
+    };    
   </script>
 </body>
 </html>
