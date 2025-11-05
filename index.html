@@ -3,84 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>☠️ YMAY INTERACTIVEWAY AGEPAY</title>
+  <title>🌈 My Interactive Page</title>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
       text-align: center;
       padding: 2rem;
       transition: all 0.4s ease;
-      background-color: #42f58a;
-      color: #fff;
+      background-color: #E8D1E4;
+      color: #333;
     }
-
+    
     h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-
     button {
       padding: 1rem 2rem;
       font-size: 1.2rem;
       border: none;
       border-radius: 10px;
-      background-color: red;
+      background-color: #7dcbff;
       cursor: pointer;
       transition: background-color 0.3s ease;
-      margin: 0.5rem;
     }
-
-    button:hover { background-color: orange; }
-
+    button:hover { background-color: #ffb300; }
     .dark {
       background-color: #222;
       color: white;
     }
-
-    #quote {
-      margin-top: 2rem;
-      font-style: italic;
-      font-size: 1.2rem;
-      color: #111212;
-    }
-
-    #counter {
-      margin-top: 1rem;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
   </style>
 </head>
 <body>
-  <h1 id="welcome">🙂 Hello there!</h1>
+  <h1 id="welcome">🌈 Welcome!</h1>
   <p id="greeting">Let's make your page come alive ✨</p>
+  <button id="themeBtn">🌚 Toggle Dark Mode</button>
+  
+  <h2>Click Counter 🧮</h2>
+  <p>You’ve clicked the button <span id="clickCount">0</span> times!</p>
+  <button id="clickButton">Click me!</button>
 
-  <!-- Buttons -->
-  <button id="themeBtn">🌗 Toggle Dark Mode</button>
-  <button id="quoteBtn">💬 Show Quote of the Day</button>
-  <button id="clickBtn">👆 Click Me</button>
-
-  <!-- Display Area -->
-  <p id="quote"></p>
-  <p id="counter">Clicks: 0</p>
+  <h2>Quote of the Day 💬</h2>
+  <p id="quote">Click the button for some inspiration!</p>
+  <button id="quoteBtn">✨ New Quote</button>
 
   <script>
+    const btn = document.getElementById('themeBtn');
     const body = document.body;
-    const themeBtn = document.getElementById('themeBtn');
-    const quoteBtn = document.getElementById('quoteBtn');
-    const clickBtn = document.getElementById('clickBtn');
-    const counterDisplay = document.getElementById('counter');
-    const quoteDisplay = document.getElementById('quote');
 
-    let clickCount = 0;
-
-    // Toggle dark mode
-    themeBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
+    btn.addEventListener('click', () => {
       body.classList.toggle('dark');
     });
 
     // Ask for visitor's name
     const name = prompt("What's your name?");
     if (name) {
-      document.getElementById('welcome').textContent = `Welcome, ${name}! 🎊`;
+      document.getElementById('welcome').textContent = `Welcome, ${name}! ☺️`;
     }
 
     // Dynamic greeting
@@ -91,30 +66,48 @@
     else message = "🌙 Good evening!";
     document.getElementById('greeting').textContent = message;
 
-    // Quotes array
-    const quotes = [
-      "“The best way to predict the future is to invent it.” – Alan Kay",
-      "“Do or do not. There is no try.” – Yoda",
-      "“Stay hungry, stay foolish.” – Steve Jobs",
-      "“Simplicity is the ultimate sophistication.” – Leonardo da Vinci",
-      "“Your time is limited, so don’t waste it living someone else’s life.” – Steve Jobs",
-      "“In the middle of difficulty lies opportunity.” – Albert Einstein"
-    ];
+    // Start the counter at 0
+    let count = 0;
 
-    // Show Quote of the Day on button click
-    quoteBtn.addEventListener('click', () => {
-      const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-      quoteDisplay.textContent = randomQuote;
+   // Find the elements in the page
+   const button = document.getElementById("clickButton");
+   const display = document.getElementById("clickCount");
+
+   // Function to generate a random colour
+   function getRandomColour() {
+   const letters = '0123456789ABCDEF';
+   let colour = '#';
+   for (let i = 0; i < 6; i++) {
+      colour += letters[Math.floor(Math.random() * 16)];
+     }
+    return colour;
+    }
+    
+  // When the button is clicked:
+    button.addEventListener("click", function() {
+      count++; // increase counter
+      display.textContent = count; // update text
+      document.body.style.backgroundColor = getRandomColour(); // random background colour
     });
 
-    // Click Button → adds +1 and changes color
-    clickBtn.addEventListener('click', () => {
-      clickCount++;
-      counterDisplay.textContent = `Clicks: ${clickCount}`;
+ // Quotes
+  const quotes = [
+  "There is some good in this world, and it’s worth fighting for. — J.R.R. Tolkien, The Two Towers",
+  "It is only with the heart that one can see rightly; what is essential is invisible to the eye. — Antoine de Saint-Exupéry, The Little Prince",
+  "Beware; for I am fearless, and therefore powerful. — Mary Shelley, Frankenstein",
+  "This above all: To thine own self be true, And it must follow, as the night the day, Thou canst not then be false to any man. — William Shakespeare, Hamlet",
+  "Who controls the past controls the future. Who controls the present controls the past.  — George Orwell, Nineteen Eighty-Four"
+];
 
-      const randomColor = `hsl(${Math.floor(Math.random() * 360)}, 70%, 60%)`;
-      body.style.backgroundColor = randomColor;
-    });
+const quoteDisplay = document.getElementById("quote");
+const quoteBtn = document.getElementById("quoteBtn");
+
+quoteBtn.addEventListener("click", () => {
+  const randomIndex = Math.floor(Math.random() * quotes.length);
+  quoteDisplay.textContent = quotes[randomIndex];
+});
+
+    
   </script>
 </body>
 </html>
